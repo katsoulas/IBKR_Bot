@@ -1,1 +1,1 @@
-# daily logger placeholder
+# placeholder

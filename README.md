@@ -1,3 +1,1 @@
-IBKR SPX/VIX Logger (NY time)
-
-See instructions in chat.
+Ready-to-run IBKR SPX/VIX Logger
