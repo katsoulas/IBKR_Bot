@@ -1,11 +1,19 @@
-from ib_insync import IB
+from __future__ import annotations
+
 import logging
-def connect_ibkr(host, port, cid, readonly):
+from ib_insync import IB
+
+log = logging.getLogger("bot.ib_client")
+
+def connect_ibkr(host: str, port: int, client_id: int, readonly: bool) -> IB:
     ib = IB()
-    ib.connect(host, port, clientId=cid, readonly=readonly)
-    logging.info("IBKR API is now connected")
+    ib.connect(host=host, port=port, clientId=client_id, readonly=readonly, timeout=10)
+    log.info("IBKR API is now connected")
     return ib
-def disconnect_ibkr(ib):
-    if ib and ib.isConnected():
-        ib.disconnect()
-        logging.info("IBKR API is now disconnected")
+
+def disconnect_ibkr(ib: IB) -> None:
+    try:
+        if ib and ib.isConnected():
+            ib.disconnect()
+    finally:
+        log.info("IBKR API is now disconnected")
